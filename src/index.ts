@@ -1,11 +1,13 @@
 import express from "express";
 import "dotenv/config";
+import router from "./routes/products";
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send(process.env.NAME);
-});
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/products", router);
 
 const PORT = process.env.PORT || 5000;
 
